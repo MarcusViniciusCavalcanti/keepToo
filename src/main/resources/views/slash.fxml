@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="451.0" prefWidth="400.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.zonework.keeptoo.controller.SlashController">
+   <children>
+      <AnchorPane layoutY="47.0" maxHeight="412.0" minHeight="200.0" prefHeight="361.0" prefWidth="577.0" style="-fx-background-color: fff; -fx-border-radius: 10;">
+         <children>
+            <AnchorPane layoutX="298.0" prefHeight="361.0" prefWidth="207.0" style="-fx-background-color: fff;">
+               <children>
+                  <Label fx:id="lbTitle" layoutX="22.0" layoutY="66.0" prefHeight="43.0" prefWidth="205.0" text="Carregando Sistema" textAlignment="CENTER" textFill="#2962fff5">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ProgressIndicator layoutX="84.0" layoutY="130.0" prefHeight="78.0" prefWidth="81.0" />
+                  <Label fx:id="lblLoadFile" layoutX="19.0" layoutY="234.0" prefHeight="15.0" prefWidth="187.0" text="Lendo arquivos" textFill="#2962ff" textOverrun="LEADING_ELLIPSIS" visible="false" />
+                  <Label fx:id="lblContractExpired" layoutX="19.0" layoutY="254.0" prefHeight="15.0" prefWidth="200.0" text="Buscando contratos expirados" textFill="#2962ff" textOverrun="LEADING_ELLIPSIS" visible="false" />
+                  <Label fx:id="lblInitialize" layoutX="19.0" layoutY="274.0" prefHeight="15.0" prefWidth="187.0" text="Inicializando Sistema" textFill="#2962ff" textOverrun="LEADING_ELLIPSIS" visible="false" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="69.0" prefHeight="451.0" prefWidth="228.0" style="-fx-background-color: #2962ff;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="34.0" layoutY="206.0" text="KeepToo" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="33.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="254.0" text="Gerencidor de contratos" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="28.0" fitWidth="24.0" layoutX="101.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/info.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="41.0" layoutY="422.0" text="By Vinicius Cavalcanti" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
