@@ -20,7 +20,6 @@ public class StartApplicationService extends Service<Boolean> {
     private KeepToo app;
     private LogInformation logInformation = LogInformation.getLogInformation();
 
-
     public StartApplicationService(Stage primaryStage, KeepToo app) throws IOException {
         logInformation.writeInfo("inicializando serviço de check da aplicação");
 
@@ -49,7 +48,6 @@ public class StartApplicationService extends Service<Boolean> {
     public void start() {
         super.start();
         stage.show();
-
     }
 
     @Override

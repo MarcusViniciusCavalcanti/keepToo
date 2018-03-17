@@ -1,4 +1,4 @@
-package br.com.zonework.keeptoo.utils.exception;
+package br.com.zonework.keeptoo.exception;
 
 /**
  * @author Vinicius Cavalcanti
@@ -6,4 +6,7 @@ package br.com.zonework.keeptoo.utils.exception;
  * @since 1.0 12/03/18 project keeptoo
  */
 public class CheckApplicationException extends Exception {
+    public CheckApplicationException(String msg) {
+        super(msg);
+    }
 }

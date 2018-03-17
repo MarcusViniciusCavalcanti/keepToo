@@ -1,5 +1,7 @@
 package br.com.zonework.keeptoo.app;
 
+import br.com.zonework.keeptoo.applicationPath.AppData;
+import br.com.zonework.keeptoo.applicationPath.Path;
 import br.com.zonework.keeptoo.service.StartApplicationService;
 import br.com.zonework.keeptoo.utils.logger.LogInformation;
 
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.h2.store.fs.FileUtils;
 
 import java.io.IOException;
 
@@ -22,19 +25,13 @@ import java.io.IOException;
 public class KeepToo extends Application {
     private Stage primaryStage;
 
-
     public static void main(String[] args) {
         LogInformation logInformation = LogInformation.getLogInformation(args);
         logInformation.writeInfo("iniciando keeptoo");
 
-        launch(args);
-    }
+        createFolderDatabaseIfNotExist();
 
-    public EventHandler<WindowEvent> onCloseEvent() {
-        return t -> {
-            Platform.exit();
-            System.exit( 0 );
-        };
+        launch(args);
     }
 
     public void start(Stage primaryStage) {
@@ -67,6 +64,14 @@ public class KeepToo extends Application {
             primaryStage.setMinWidth(1280);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void createFolderDatabaseIfNotExist() {
+        String pathDataBase = Path.DATABASE.getFrom(new AppData());
+
+        if(!FileUtils.exists(pathDataBase)) {
+            FileUtils.createDirectory(pathDataBase);
         }
     }
 }

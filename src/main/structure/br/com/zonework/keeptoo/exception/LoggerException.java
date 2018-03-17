@@ -1,4 +1,4 @@
-package br.com.zonework.keeptoo.utils.exception;
+package br.com.zonework.keeptoo.exception;
 
 /**
  * Exception que é lançando quando um erro no logger.

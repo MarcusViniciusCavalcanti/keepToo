@@ -20,19 +20,31 @@ public enum Path {
         this.value = value;
     }
 
-
-    public String getFrom(Folder folder, String file) {
-        String dir = folder.getAbsolutePathFolder() + File.separator + this.value;
+    public String getFrom(Folder folder) {
+        String dir = folder.getAbsolutePathFolder() + File.separator;
         createFolderIfNotExists(dir);
 
-        return dir + file;
+        return dir;
     }
 
-    private void createFolderIfNotExists(String path) {
+    public String getFrom(Folder folder, String file) {
+        String dir = folder.getAbsolutePathFolder() + File.separator + this.value + file;
+        createFileIfNotExists(dir);
+
+        return dir;
+    }
+
+    private void createFileIfNotExists(String path) {
         File dir = new File(path);
 
         if(!dir.exists()) {
-            FileUtils.createDirectory(dir.getAbsolutePath());
+            FileUtils.createFile(dir.getAbsolutePath());
+        }
+    }
+
+    private void createFolderIfNotExists(String path) {
+        if(FileUtils.exists(path)) {
+            FileUtils.createDirectory(path);
         }
     }
 }

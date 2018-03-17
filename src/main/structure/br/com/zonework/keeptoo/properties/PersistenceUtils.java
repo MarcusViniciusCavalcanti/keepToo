@@ -3,6 +3,10 @@ package br.com.zonework.keeptoo.properties;
 import br.com.zonework.keeptoo.applicationPath.AppData;
 import br.com.zonework.keeptoo.applicationPath.Path;
 import br.com.zonework.keeptoo.base.abstracsClasse.Folder;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.HashMap;
@@ -20,23 +24,29 @@ public class PersistenceUtils {
 
     private static PersistenceUtils instance;
 
-    public static EntityManagerFactory entityManagerFactory;
+    private static EntityManagerFactory entityManagerFactory;
 
     private PersistenceUtils() {
-        setPersistenceUnit(new AppData(), "keepToo");
+        setPersistenceUnit(new AppData());
     }
 
     public static PersistenceUtils getInstance() {
-        return instance == null ? new PersistenceUtils() : instance;
+        return instance == null ? instance = new PersistenceUtils() : instance;
     }
 
-    private void setPersistenceUnit(Folder folder, String databaseName) {
-        Map properties = new HashMap();
-        properties.put(HIBERNATE_CONNECTION_URL, getDbURL(folder, databaseName));
+    public SessionFactory getSessionFactory() {
+        return entityManagerFactory.createEntityManager()
+                .getEntityManagerFactory()
+                .unwrap( SessionFactory.class );
+    }
+
+    private void setPersistenceUnit(Folder folder) {
+        Map<String, String> properties = new HashMap<>();
+        properties.put(HIBERNATE_CONNECTION_URL, getDbURL(folder));
         entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, properties);
     }
 
-    private String getDbURL(Folder folder, String databaseName) {
-        return JDBC_H2 + Path.DATABASE.getFrom(folder, databaseName);
+    private String getDbURL(Folder folder) {
+        return JDBC_H2 + Path.DATABASE.getFrom(folder, "keepToo;AUTO_SERVER=TRUE");
     }
 }

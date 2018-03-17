@@ -1,6 +1,6 @@
 package br.com.zonework.keeptoo.utils.logger;
 
-import br.com.zonework.keeptoo.utils.exception.LoggerException;
+import br.com.zonework.keeptoo.exception.LoggerException;
 import org.fusesource.jansi.AnsiConsole;
 
 import java.time.LocalDateTime;

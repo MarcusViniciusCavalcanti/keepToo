@@ -2,10 +2,9 @@ package br.com.zonework.keeptoo.checkApplication.process;
 
 import br.com.zonework.keeptoo.checkApplication.CheckProcess;
 import br.com.zonework.keeptoo.controller.SlashController;
-import br.com.zonework.keeptoo.utils.exception.CheckApplicationException;
+import br.com.zonework.keeptoo.exception.CheckApplicationException;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 /**
  * @author Vinicius Cavalcanti

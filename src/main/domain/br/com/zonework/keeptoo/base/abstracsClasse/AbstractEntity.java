@@ -16,8 +16,6 @@ public abstract class AbstractEntity implements Serializable {
     private @Column(name = "created_at") LocalDateTime createdAt;
     private @Column(name = "updated_at") LocalDateTime updatedAt;
 
-    public AbstractEntity() { }
-
     public Long getId() {
         return id;
     }
@@ -53,5 +51,15 @@ public abstract class AbstractEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @PrePersist
+    private void setCreateEntityDate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void setLastModifier() {
+        this.updatedAt = LocalDateTime.now();
     }
 }

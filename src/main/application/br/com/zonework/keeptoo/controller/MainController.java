@@ -6,4 +6,5 @@ package br.com.zonework.keeptoo.controller;
  * @since 1.0 12/03/18 project keeptoo
  */
 public class MainController {
+
 }
