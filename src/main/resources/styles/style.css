@@ -1,0 +1,14 @@
+.btnsMenu {
+    -fx-background-color: #dcdcdc;
+}
+
+.btnsMenu:hover {
+    -fx-background-color: #d5d5d5;
+}
+
+.btnsMenuSelected {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000 white #000000 #000000;
+    -fx-border-width: 1px 0px 1px 1px;
+}
+

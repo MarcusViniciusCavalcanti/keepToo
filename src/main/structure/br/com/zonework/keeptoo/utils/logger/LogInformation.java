@@ -40,7 +40,7 @@ public final class LogInformation {
      * @return uma instancia de LogIformation
      */
     public static LogInformation getLogInformation(String... args) {
-        String arg = "production";
+        String arg = "dev";
         if (args.length > 0) {
             arg = args[0];
         }
