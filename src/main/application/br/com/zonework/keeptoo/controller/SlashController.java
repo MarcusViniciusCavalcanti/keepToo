@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
-
 public class SlashController {
     private @FXML Label lblLoadFile;
     private @FXML Label lblContractExpired;

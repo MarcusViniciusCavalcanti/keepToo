@@ -1,11 +1,9 @@
 package br.com.zonework.keeptoo.contract.entity;
 
 import br.com.zonework.keeptoo.base.abstracsClasse.AbstractEntity;
-import br.com.zonework.keeptoo.contract.valueObject.BalanceContract;
-import javafx.beans.property.StringProperty;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +18,13 @@ public class Contract extends AbstractEntity {
     private @Column LocalDate initialDate;
     private @Column LocalDate endDate;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    private BalanceContract balance;
+    private @Column BigDecimal balance;
 
-    @ManyToMany
-    @JoinTable(name = "contract_addenda",
-            joinColumns = @JoinColumn(name = "contract", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "addenda", referencedColumnName = "id"))
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent", referencedColumnName = "id")
+    private Contract parent;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Contract> contractAddenda;
 
     public Contract() {
@@ -73,11 +71,11 @@ public class Contract extends AbstractEntity {
         this.endDate = endDate;
     }
 
-    public BalanceContract getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(BalanceContract balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
@@ -89,19 +87,34 @@ public class Contract extends AbstractEntity {
         this.contractAddenda = contractAddenda;
     }
 
-    public void addAdend(Contract contract) {
+    public void addAddend(Contract contract) {
         contractAddenda.add(contract);
     }
 
-    public Boolean isExpired() {
-        return this.endDate.isAfter(LocalDate.now());
+    public Contract getParent() {
+        return parent;
     }
 
-    public Boolean isAlertExpire() {
-        return false;
+    public void setParent(Contract parent) {
+        this.parent = parent;
     }
 
+    public BigDecimal getBalanceWithAddend() {
+        if(this.contractAddenda.isEmpty())
+            return this.getBalance();
 
+        return this.contractAddenda.stream()
+                .map(Contract::getBalance)
+                .reduce(this.getBalance(), BigDecimal::add);
+    }
+
+    @PrePersist
+    @PreUpdate
+    private void parent() {
+        if(!this.contractAddenda.isEmpty()) {
+            contractAddenda.forEach(contract -> contract.setParent(this));
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -117,6 +130,4 @@ public class Contract extends AbstractEntity {
     public int hashCode() {
         return Objects.hash(super.hashCode(), number, numberTrading);
     }
-
-
 }

@@ -7,4 +7,6 @@ public class ContractRepository extends AbstractRepository<Contract> {
     public ContractRepository() {
         super(Contract.class);
     }
+
+
 }
