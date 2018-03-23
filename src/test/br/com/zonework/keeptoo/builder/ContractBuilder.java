@@ -3,6 +3,7 @@ package br.com.zonework.keeptoo.builder;
 import br.com.zonework.keeptoo.contract.entity.Contract;
 import br.com.zonework.keeptoo.contract.valueObject.BalanceContract;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +17,7 @@ public final class ContractBuilder {
         contract.setNumber("0000");
         contract.setDescription("description");
         contract.setNumberTrading("pregão");
-        contract.setBalance(BalanceContractBuilder.aBalanceContract().build());
+        contract.setBalance(new BigDecimal(10.00));
         contract.setInitialDate(LocalDate.now());
         contract.setEndDate(LocalDate.now().plusMonths(12));
     }
@@ -65,7 +66,7 @@ public final class ContractBuilder {
         return this;
     }
 
-    public ContractBuilder withBalance(BalanceContract balance) {
+    public ContractBuilder withBalance(BigDecimal balance) {
         contract.setBalance(balance);
         return this;
     }
