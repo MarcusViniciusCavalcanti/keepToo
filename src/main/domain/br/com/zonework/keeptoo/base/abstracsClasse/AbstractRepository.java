@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class AbstractRepository<E extends AbstractEntity> {
     @PersistenceContext
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
     private Class<E> persistenceClass;
 
     public AbstractRepository(Class<E> persistenceClass) {

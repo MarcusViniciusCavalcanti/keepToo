@@ -1,6 +1,6 @@
 package br.com.zonework.keeptoo.contract;
 
-import br.com.zonework.keeptoo.builder.ContractBuilder;
+import br.com.zonework.keeptoo.contract.builder.ContractBuilder;
 import br.com.zonework.keeptoo.contract.entity.Contract;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;

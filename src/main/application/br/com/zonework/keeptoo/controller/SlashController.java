@@ -11,7 +11,12 @@ public class SlashController {
     private @FXML Label lblInitialize;
 
     public void showLoadFile() {
-        setAnimation(lblLoadFile);
+        try {
+            Thread.sleep(1000);
+            setAnimation(lblLoadFile);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showCheckContractExpired() {

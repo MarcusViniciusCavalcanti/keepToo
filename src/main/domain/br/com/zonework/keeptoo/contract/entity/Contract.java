@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "contracts")
+@Table(name = "CONTRACTS", indexes = {
+        @Index(name = "ID_INDEX", columnList = "ID", unique = true),
+        @Index(name = "NUMBER_INDEX", columnList = "NUMBER")
+})
 public class Contract extends AbstractEntity {
     private @Column String number;
     private @Column String numberTrading;
@@ -129,5 +133,10 @@ public class Contract extends AbstractEntity {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), number, numberTrading);
+    }
+
+    @Override
+    public String toString() {
+        return this.number;
     }
 }
